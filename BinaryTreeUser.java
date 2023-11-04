@@ -149,9 +149,9 @@ class BinaryTree{
         }// end of while
     }// end of function
 
-    public int sumofleafnode(node root)
+    public int sumofleafnode()
     {
-        node iter = root;
+        node iter;
         
         int sum = 0;
 
@@ -186,9 +186,9 @@ class BinaryTree{
         return sum;
     }// end of function
 
-    public int sumofnonleaf(node root)
+    public int sumofnonleaf()
     {
-        node iter= root;
+        node iter;
         
         int sum = 0;
 
@@ -223,7 +223,7 @@ class BinaryTree{
         return sum;
     }// end of function
 
-    public int getMax(node root)
+    public int getMax()
     {
         node iter=root;
         
@@ -261,7 +261,7 @@ class BinaryTree{
         return max;
     }// end of function
 
-    public int getmin(node root)
+    public int getmin()
     {
         node iter= root;
         
@@ -345,8 +345,8 @@ public class BinaryTreeUser {
         node iter1 = n1;
         node iter2 = n2;
 
-        Queue <node> q1 = new LinkedList<>();
-        Queue <node> q2 = new LinkedList<>();
+        Queue <node> q1 = new LinkedList<node>();
+        Queue <node> q2 = new LinkedList<node>();
 
         q1.add(iter1);
         q2.add(iter2);
@@ -378,7 +378,7 @@ public class BinaryTreeUser {
             }
 
         }   // while end
-        if (q1.isEmpty() && !q2.isEmpty())
+        if (q1.isEmpty() && q2.isEmpty())
         {
             return true;
         }
@@ -407,17 +407,16 @@ public class BinaryTreeUser {
         while(!q.isEmpty())
         {
             iter=q.remove();
-            t.insert_levelwise(iter.getData());
             swap(iter);
+            t.insert_levelwise(iter.getData());
 
             if(iter.getLeft()!=null)
-            {   t.insert_levelwise(iter.getData());
+            {   
                 q.add(iter.getLeft());
             }
             
             if(iter.getRight()!=null)
             {
-                t.insert_levelwise(iter.getData());
                 q.add(iter.getRight());
             }
         }
@@ -448,6 +447,16 @@ public class BinaryTreeUser {
             t.setRoot( mirror_image(bt.getroot()));
             System.out.println("Mirror Image of the given binary tree is : ");
             t.levelwise_traversal(t.getroot());
+
+            if(isIdentical(bt.getroot(), t.getroot()))
+            System.out.println("trees are identical");
+            else
+            System.out.println("not identical");
+
+            System.out.println("Max :"+bt.getMax());
+            System.out.println("Min :"+bt.getmin());
+            System.out.println("The Sum of Leaf nodes :"+bt.sumofleafnode());
+            System.out.println("The Sum of Non Leaf nodes :"+bt.sumofnonleaf());
 
             sc.close();
         }
