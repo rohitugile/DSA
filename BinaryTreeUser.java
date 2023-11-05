@@ -455,6 +455,8 @@ public class BinaryTreeUser {
             System.out.println("Min :"+bt.getmin());
             System.out.println("The Sum of Leaf nodes :"+bt.sumofleafnode());
             System.out.println("The Sum of Non Leaf nodes :"+bt.sumofnonleaf());
+            bt.levelwise_traversal(t.getroot());
+
 
             sc.close();
         }
